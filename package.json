@@ -1,0 +1,39 @@
+{
+  "name": "infoq-mini-book",
+  "version": "1.0.0",
+  "description": "InfoQ Mini-Book",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mraible/infoq-mini-book.git"
+  },
+  "author": "",
+  "keywords": [
+    "book",
+    "asciidoc",
+    "asciidoctor"
+  ],
+  "private": true,
+  "scripts": {
+    "build": "bash ./gradlew all",
+    "build:site": "antora --html-url-extension-style=indexify site.yml",
+    "clean": "bash ./gradlew clean",
+    "serve": "npm run watch:all",
+    "setup": "npm install && npm run build",
+    "start": "npm run setup && npm run watch",
+    "watch": "npm run watch:all",
+    "watch:adoc": "bash ./gradlew --continuous html",
+    "watch:html": "nodemon ./watch.js",
+    "watch:site": "node watch-site.js",
+    "watch:all": "concurrently --kill-others \"npm run watch:adoc\" \"npm run watch:html\"",
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "@antora/cli": "~3.1",
+    "@antora/site-generator": "^3.1.15",
+    "@release-it/bumper": "7.0.6",
+    "browser-sync": "3.0.4",
+    "chokidar": "5.0.0",
+    "concurrently": "10.0.3",
+    "nodemon": "3.1.14"
+  }
+}
